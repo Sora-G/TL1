@@ -80,6 +80,7 @@ void GameScene::Init() {
 		}
 	}
 
+
 	// レベルデータに出現するモデルの読み込み
 	for (auto& objectData : levelData->objects) {
 		// ファイル名から登録済みモデルを検索
