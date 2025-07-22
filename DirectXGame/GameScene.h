@@ -55,4 +55,6 @@ private:
 	std::vector<KamataEngine::WorldTransform*> worldTransforms;
 
 	KamataEngine::Camera camera_;
+
+	KamataEngine::Model* model = nullptr;
 };

@@ -84,11 +84,10 @@ void GameScene::Init() {
 	// レベルデータに出現するモデルの読み込み
 	for (auto& objectData : levelData->objects) {
 		// ファイル名から登録済みモデルを検索
-		Model* model = nullptr;
 		decltype(models)::iterator it = models.find(objectData.file_name);
 
 		//未読み込みの場合読み込む
-		if (it != models.end()) {
+		if (it == models.end()) {
 			model->CreateFromOBJ(objectData.file_name);
 			models[objectData.file_name] = model;
 		}
@@ -127,17 +126,6 @@ void GameScene::Update() {
 
 void GameScene::Draw() {
 	//描画処理
-
-#pragma region 背景スプライト描画
-	//スプライト描画前処理
-	Sprite::PreDraw(dxCommon_->GetCommandList());
-
-	// スプライト描画後処理
-	Sprite::PostDraw();
-	//深度バッファクリア
-	dxCommon_->ClearDepthBuffer();
-#pragma endregion
-
 #pragma region 3Dオブジェクト描画
 	//3Dオブジェクト描画前処理
 	Model::PreDraw();
@@ -146,7 +134,6 @@ void GameScene::Draw() {
 	// レベルデータからオブジェクトを生成＆配置
 	for (auto& objectData : levelData->objects) {
 		// ファイル名から登録済みモデルを検索
-		Model* model = nullptr;
 		decltype(models)::iterator it = models.find(objectData.file_name);
 		if (it != models.end()) {
 			model = it->second;
