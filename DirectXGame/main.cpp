@@ -9,6 +9,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	//エンジンの初期化
 	KamataEngine::Initialize(L"LE3C_12_スズキ_ソラ");
 
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+
 	GameScene* gameScene = new GameScene();
 	gameScene->Init();
 
@@ -20,7 +22,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		}
 		gameScene->Update();
 
+		dxCommon->PreDraw();
 		gameScene->Draw();
+		dxCommon->PostDraw();
 	}
 
 	//エンジンの終了処理

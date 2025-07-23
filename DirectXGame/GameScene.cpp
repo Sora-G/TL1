@@ -88,7 +88,7 @@ void GameScene::Init() {
 
 		//未読み込みの場合読み込む
 		if (it == models.end()) {
-			model->CreateFromOBJ(objectData.file_name);
+			model = Model::CreateFromOBJ(objectData.file_name);
 			models[objectData.file_name] = model;
 		}
 	}
@@ -120,7 +120,7 @@ void GameScene::Update() {
 		//Todo:ワールド行列の計算
 		
 		//定数バッファの転送
-		object->TransferMatrix();
+		object->UpdateMatrix();
 	}
 }
 
@@ -146,14 +146,6 @@ void GameScene::Draw() {
 
 	//3Dオブジェクト描画後処理
 	Model::PostDraw();
-#pragma endregion
-
-#pragma region 前景スプライト描画
-	// スプライト描画前処理
-	Sprite::PreDraw(dxCommon_->GetCommandList());
-
-	// スプライト描画後処理
-	Sprite::PostDraw();
 #pragma endregion
 }
 
