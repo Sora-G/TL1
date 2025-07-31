@@ -110,6 +110,8 @@ void GameScene::Init() {
 		worldTransforms.push_back(newObject);
 	}
 
+	camera_.translation_ = Vector3(-15.0f, 15.0f, -30.0f);
+	camera_.rotation_ = Vector3(0.3f, 0.45f, 0.0f);
 	camera_.Initialize();
 }
 
@@ -121,6 +123,9 @@ void GameScene::Update() {
 		
 		//定数バッファの転送
 		object->UpdateMatrix();
+
+		camera_.UpdateMatrix();
+		camera_.TransferMatrix();
 	}
 }
 
